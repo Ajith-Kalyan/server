@@ -17,11 +17,7 @@ def handle_connect():
 @socketio.on("disconnect")
 def handle_disconnect():
     print("Client disconnected")
-
-
-import uuid
-from flask_socketio import emit, join_room
-
+    
 # Handle creating a new room and generating userId
 @socketio.on("create_room")
 def handle_create_room(data):
