@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify
-from flask_socketio import SocketIO, join_room, leave_room, send, emit
+from flask import Flask, request
+from flask_socketio import SocketIO, join_room, emit
 import uuid
 
 app = Flask(__name__)
