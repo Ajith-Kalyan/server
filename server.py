@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_socketio import SocketIO, join_room, emit
 import uuid
+import os  
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -17,7 +18,7 @@ def handle_connect():
 @socketio.on("disconnect")
 def handle_disconnect():
     print("Client disconnected")
-    
+
 # Handle creating a new room and generating userId
 @socketio.on("create_room")
 def handle_create_room(data):
@@ -120,4 +121,5 @@ def handle_check_moderator(data):
 
 if __name__ == "__main__":
     print("Starting server...")
-    socketio.run(app, host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Default to 5000 if PORT is not set
+    socketio.run(app, host="0.0.0.0", port=port)
